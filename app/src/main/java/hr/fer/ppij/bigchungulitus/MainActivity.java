@@ -50,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
         //getting inputs from text boxes
         @SuppressLint("ResourceType") CharSequence textUsername = getText(R.id.editTextPersonName);
         @SuppressLint("ResourceType") CharSequence textPassword = getText(R.id.editTextPassword);
-        BigChungus bigChungus = new BigChungus();
-        bigChungus.setUsername(getText(R.id.editTextPersonName));
-        bigChungus.setPassword(getText(R.id.editTextPassword));
 
         System.out.println(textUsername);
         setContentView(R.layout.activity_main);
@@ -87,5 +84,11 @@ public class MainActivity extends AppCompatActivity {
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public boolean closeSignUp(View view){
+        @SuppressLint("ResourceType") BigChungus bigChungus = new BigChungus(getText(R.id.editTextSignUpUserName), getText(R.id.editTextSignUpPassword),
+                getText(R.id.editTextSignUpEmail), getText(R.id.editTextSignUpName), getText(R.id.editTextSignUpLastName));
+        return true;
     }
 }

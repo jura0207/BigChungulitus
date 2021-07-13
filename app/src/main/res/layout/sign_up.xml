@@ -25,7 +25,7 @@
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/editTextSignUpUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -46,7 +46,7 @@
                 app:layout_constraintVertical_bias="0.28" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
+                android:id="@+id/editTextSignUpEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -61,7 +61,7 @@
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/editTextSignUpPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -75,7 +75,7 @@
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editTextTextPassword2"
+                android:id="@+id/editTextSignUpRepPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -89,7 +89,7 @@
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/editTextSignUpName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -110,7 +110,7 @@
                 app:layout_constraintVertical_bias="0.28" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName4"
+                android:id="@+id/editTextSignUpLastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -136,6 +136,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pick_date"
                 android:onClick="showDatePickerDialog" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="112dp"
+                android:layout_height="wrap_content"
+                android:onClick="closeSignUp"
+                android:text="Sign Up" />
 
         </LinearLayout>
     </ScrollView>
