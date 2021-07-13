@@ -1,5 +1,6 @@
 package hr.fer.ppij.bigchungulitus;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -8,6 +9,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.log_inn);
 
 
+
     }
 
     @Override
@@ -42,7 +45,16 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    @SuppressLint("ResourceType")
     public boolean openMainMenu(View view){
+        //getting inputs from text boxes
+        @SuppressLint("ResourceType") CharSequence textUsername = getText(R.id.editTextPersonName);
+        @SuppressLint("ResourceType") CharSequence textPassword = getText(R.id.editTextPassword);
+        BigChungus bigChungus = new BigChungus();
+        bigChungus.setUsername(getText(R.id.editTextPersonName));
+        bigChungus.setPassword(getText(R.id.editTextPassword));
+
+        System.out.println(textUsername);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,5 +78,14 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         return true;
+    }
+
+    public boolean openSignUp(View view){
+        setContentView(R.layout.sign_up);
+        return true;
+    }
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 }
