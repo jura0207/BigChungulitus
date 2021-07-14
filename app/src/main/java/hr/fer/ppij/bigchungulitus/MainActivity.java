@@ -9,6 +9,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -25,9 +26,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.log_inn);
 
-
+        setContentView(R.layout.log_in);
 
     }
 
@@ -47,11 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("ResourceType")
     public boolean openMainMenu(View view){
-        //getting inputs from text boxes
-        @SuppressLint("ResourceType") CharSequence textUsername = getText(R.id.editTextPersonName);
-        @SuppressLint("ResourceType") CharSequence textPassword = getText(R.id.editTextPassword);
 
-        System.out.println(textUsername);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                setContentView(R.layout.new_feed);
+                /**Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -89,6 +86,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean closeSignUp(View view){
         @SuppressLint("ResourceType") BigChungus bigChungus = new BigChungus(getText(R.id.editTextSignUpUserName), getText(R.id.editTextSignUpPassword),
                 getText(R.id.editTextSignUpEmail), getText(R.id.editTextSignUpName), getText(R.id.editTextSignUpLastName));
+        openMainMenu(view);
         return true;
+    }
+
+    public void openSettings(View view){
+        setContentView(R.layout.settings);
+    }
+
+    @Override
+    public void onBackPressed(){
+        setContentView(R.layout.log_in);
     }
 }
