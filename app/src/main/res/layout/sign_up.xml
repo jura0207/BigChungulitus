@@ -68,6 +68,13 @@
                 android:inputType="textPassword" />
 
             <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your password should contain at least one upper and lower case letter and a number*"
+                android:textColor="#FF0000" />
+
+            <TextView
                 android:id="@+id/textView6"
                 android:layout_width="210dp"
                 android:layout_height="39dp"
