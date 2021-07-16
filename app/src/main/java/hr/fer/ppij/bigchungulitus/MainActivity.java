@@ -33,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.log_in);
-
     }
 
     @Override
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("ResourceType")
-    public boolean openMainMenu(View view){
+    public boolean openMainMenu(BigChungus bigChungus){
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -91,12 +89,28 @@ public class MainActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
+
+    public void closeLogIn(View view){
+        EditText username = (EditText) findViewById(R.id.editTextUserNameLogIn);
+        EditText password = (EditText) findViewById(R.id.editTextPasswordLogIn);
+
+        //TODO check in database for a log in credentials
+
+        BigChungus bigChungus = new BigChungus();
+        openMainMenu(bigChungus);
+    }
+
     public boolean closeSignUp(View view){
+        EditText username = (EditText) findViewById(R.id.editTextSignUpUserName);
+        EditText email = (EditText) findViewById(R.id.editTextSignUpEmail);
         EditText passwd = (EditText) findViewById(R.id.editTextSignUpPassword);
         EditText passwdConfirm = (EditText) findViewById(R.id.editTextSignUpRepPassword);
+        EditText personFirstName = (EditText) findViewById(R.id.editTextSignUpName);
+        EditText personLastName = (EditText) findViewById(R.id.editTextSignUpLastName);
+
         TextView passWarningTextView = (TextView) findViewById(R.id.passWarning);
         TextView passWarningConfirmTextView = (TextView) findViewById(R.id.confirmPassWarning);
-        boolean signUpCheck = false;
+        boolean signUpCheck = true;
 
         //Creates regex for password
         Pattern pattern = Pattern.compile("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}", Pattern.CASE_INSENSITIVE);
@@ -104,29 +118,34 @@ public class MainActivity extends AppCompatActivity {
 
         if (matcher.find()){
             passWarningTextView.setVisibility(View.INVISIBLE);
-            signUpCheck = true;
         } else {
             passWarningTextView.setVisibility(View.VISIBLE);
+            signUpCheck = false;
         }
 
         //Compares if the second password is matching the first one
         if (String.valueOf(passwd.getText()).equals(String.valueOf(passwdConfirm.getText()))){
             passWarningConfirmTextView.setVisibility(View.INVISIBLE);
-            //signUpCheck = true;
         } else {
             passWarningConfirmTextView.setVisibility(View.VISIBLE);
             signUpCheck = false;
         }
 
+        @SuppressLint("ResourceType") BigChungus bigChungus = new BigChungus(String.valueOf(username.getText()), String.valueOf(passwd.getText()),
+                String.valueOf(email.getText()), String.valueOf(personFirstName.getText()), String.valueOf(personLastName.getText()));
+
         //Clearing variables so it doeasn't crash
+        username = null;
         passwd = null;
         passwdConfirm = null;
+        email = null;
+        personFirstName = null;
+        personLastName = null;
         pattern = null;
 
-        @SuppressLint("ResourceType") BigChungus bigChungus = new BigChungus(getText(R.id.editTextSignUpUserName), getText(R.id.editTextSignUpPassword),
-                getText(R.id.editTextSignUpEmail), getText(R.id.editTextSignUpName), getText(R.id.editTextSignUpLastName));
+
         if (signUpCheck){
-            openMainMenu(view);
+            openMainMenu(bigChungus);
         }
         return true;
     }

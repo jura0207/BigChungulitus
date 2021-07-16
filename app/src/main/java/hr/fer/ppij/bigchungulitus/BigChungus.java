@@ -1,5 +1,6 @@
 package hr.fer.ppij.bigchungulitus;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BigChungus {
@@ -9,6 +10,15 @@ public class BigChungus {
     private CharSequence name;
     private CharSequence lastName;
     private Date date;
+
+    public BigChungus(){
+        this.username = "admin";
+        this.password = "admin";
+        this.email = "admin@admin.com";
+        this.name = "Admin";
+        this.lastName = "Admin";
+        //this.date = date;
+    }
 
     public BigChungus(CharSequence username, CharSequence password, CharSequence email, CharSequence name, CharSequence lastName) {
         this.username = username;
