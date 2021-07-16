@@ -93,7 +93,9 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean closeSignUp(View view){
         EditText passwd = (EditText) findViewById(R.id.editTextSignUpPassword);
+        EditText passwdConfirm = (EditText) findViewById(R.id.editTextSignUpRepPassword);
         TextView passWarningTextView = (TextView) findViewById(R.id.passWarning);
+        TextView passWarningConfirmTextView = (TextView) findViewById(R.id.confirmPassWarning);
         boolean signUpCheck = false;
 
         //Creates regex for password
@@ -107,8 +109,18 @@ public class MainActivity extends AppCompatActivity {
             passWarningTextView.setVisibility(View.VISIBLE);
         }
 
+        //Compares if the second password is matching the first one
+        if (String.valueOf(passwd.getText()).equals(String.valueOf(passwdConfirm.getText()))){
+            passWarningConfirmTextView.setVisibility(View.INVISIBLE);
+            //signUpCheck = true;
+        } else {
+            passWarningConfirmTextView.setVisibility(View.VISIBLE);
+            signUpCheck = false;
+        }
+
         //Clearing variables so it doeasn't crash
         passwd = null;
+        passwdConfirm = null;
         pattern = null;
 
         @SuppressLint("ResourceType") BigChungus bigChungus = new BigChungus(getText(R.id.editTextSignUpUserName), getText(R.id.editTextSignUpPassword),
