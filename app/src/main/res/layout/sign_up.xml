@@ -29,8 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -50,8 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -68,11 +66,12 @@
                 android:inputType="textPassword" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/passWarning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Your password should contain at least one upper and lower case letter and a number*"
-                android:textColor="#FF0000" />
+                android:text="Your password should contain at least one upper and lower case letter, a number and it must be at least 8 characters long*"
+                android:textColor="#FF0000"
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -90,9 +89,9 @@
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="210dp"
+                android:layout_width="274dp"
                 android:layout_height="39dp"
-                android:text="Enter name:"
+                android:text="Enter your first name:"
                 android:textSize="24sp" />
 
             <EditText
@@ -100,14 +99,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
-                android:text="Enter last name:"
+                android:text="Enter your last name:"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -121,8 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView14"

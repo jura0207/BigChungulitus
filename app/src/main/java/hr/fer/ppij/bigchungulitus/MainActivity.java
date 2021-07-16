@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -19,9 +21,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean openSignUp(View view){
         setContentView(R.layout.sign_up);
+        //public TextView passWarningTextView = (TextView) findViewById(R.id.passWarning);
         return true;
     }
     public void showDatePickerDialog(View v) {
@@ -84,9 +92,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean closeSignUp(View view){
+        EditText passwd = (EditText) findViewById(R.id.editTextSignUpPassword);
+        TextView passWarningTextView = (TextView) findViewById(R.id.passWarning);
+        boolean signUpCheck = false;
+
+        //Creates regex for password
+        Pattern pattern = Pattern.compile("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(String.valueOf(passwd.getText()));
+
+        if (matcher.find()){
+            passWarningTextView.setVisibility(View.INVISIBLE);
+            signUpCheck = true;
+        } else {
+            passWarningTextView.setVisibility(View.VISIBLE);
+        }
+
+        //Clearing variables so it doeasn't crash
+        passwd = null;
+        pattern = null;
+
         @SuppressLint("ResourceType") BigChungus bigChungus = new BigChungus(getText(R.id.editTextSignUpUserName), getText(R.id.editTextSignUpPassword),
                 getText(R.id.editTextSignUpEmail), getText(R.id.editTextSignUpName), getText(R.id.editTextSignUpLastName));
-        openMainMenu(view);
+        if (signUpCheck){
+            openMainMenu(view);
+        }
         return true;
     }
 
@@ -98,4 +127,6 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed(){
         setContentView(R.layout.log_in);
     }
+
+
 }
