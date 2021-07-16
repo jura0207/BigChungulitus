@@ -9,13 +9,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background_gradient"
         tools:layout_editor_absoluteX="303dp"
         tools:layout_editor_absoluteY="182dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView3"
@@ -133,15 +134,17 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="showDatePickerDialog"
                 android:text="@string/pick_date"
-                android:onClick="showDatePickerDialog" />
+                app:backgroundTint="#AC1717" />
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:onClick="closeSignUp"
-                android:text="Sign Up" />
+                android:text="Sign Up"
+                app:backgroundTint="#AC1717" />
 
         </LinearLayout>
     </ScrollView>
