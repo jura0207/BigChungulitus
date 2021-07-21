@@ -2,10 +2,14 @@ package hr.fer.ppij.bigchungulitus;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.TableRow.LayoutParams;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -21,6 +25,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.sql.Timestamp;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,20 +56,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("ResourceType")
-    public boolean openMainMenu(BigChungus bigChungus){
+    public void openMainMenu(View view){
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setContentView(R.layout.new_feed);
-                /**Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        //.setAction("Action", null).show();
+
             }
         });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -76,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        return true;
     }
 
     public boolean openSignUp(View view){
@@ -91,13 +98,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void closeLogIn(View view){
-        EditText username = (EditText) findViewById(R.id.editTextUserNameLogIn);
-        EditText password = (EditText) findViewById(R.id.editTextPasswordLogIn);
+        //EditText username = (EditText) findViewById(R.id.editTextUserNameLogIn);
+        //EditText password = (EditText) findViewById(R.id.editTextPasswordLogIn);
 
         //TODO check in database for a log in credentials
 
         BigChungus bigChungus = new BigChungus();
-        openMainMenu(bigChungus);
+        openMainMenu(view);
     }
 
     public boolean closeSignUp(View view){
@@ -145,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (signUpCheck){
-            openMainMenu(bigChungus);
+            openMainMenu(view);
         }
         return true;
     }
@@ -153,6 +160,32 @@ public class MainActivity extends AppCompatActivity {
     public void openSettings(View view){
         setContentView(R.layout.settings);
     }
+
+    public void postPost(View view){
+        EditText text = (EditText) findViewById(R.id.editTextPost);
+        Post post = new Post();
+        post.setText(String.valueOf(text.getText()));
+        post.setText(""); //add username
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        post.setTimeCreated(timestamp);
+
+        BigChungus bigChungus = new BigChungus();
+        setContentView(R.layout.feed_home);
+        TableLayout layout = (TableLayout) findViewById(R.id.tablelayoutfeed);
+        TableRow tr = new TableRow(this);
+
+        tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+        TextView textView = new TextView(this);
+        textView.setText("post.getText()");
+
+        tr.addView(textView);
+        /* Add row to TableLayout. */
+//tr.setBackgroundResource(R.drawable.sf_gradient_03);
+        layout.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+
+
+    }
+
 
     @Override
     public void onBackPressed(){
